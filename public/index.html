@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Président</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Écran d'accueil -->
+        <div id="home-screen" class="screen active">
+            <h1>Président</h1>
+            <input type="text" id="player-name" placeholder="Votre Pseudo" required>
+            <div class="actions">
+                <button id="btn-create-room">Créer une partie</button>
+                <div class="join-container">
+                    <input type="text" id="room-code-input" placeholder="Code de la room" maxlength="5">
+                    <button id="btn-join-room">Rejoindre</button>
+                </div>
+            </div>
+            <p id="error-msg" class="error"></p>
+        </div>
+
+        <!-- Écran Lobby -->
+        <div id="lobby-screen" class="screen">
+            <h2>Lobby - <span id="lobby-room-code"></span></h2>
+            <p>Joueurs (<span id="player-count">0</span>/6) :</p>
+            <ul id="players-list"></ul>
+            <div id="host-controls" style="display: none;">
+                <button id="btn-start-game">Lancer la partie</button>
+                <p class="small-info">Nécessite 4 à 6 joueurs</p>
+            </div>
+            <p id="waiting-msg" style="display: none;">En attente de l'hôte pour lancer la partie...</p>
+        </div>
+
+        <!-- Écran Jeu -->
+        <div id="game-screen" class="screen">
+            <div id="game-info">
+                <h2>Room: <span id="game-room-code"></span></h2>
+                <div id="turn-indicator">En attente...</div>
+            </div>
+            
+            <div id="opponents-container">
+                <!-- Avatars des autres joueurs générés ici -->
+            </div>
+
+            <div id="table-center">
+                <h3>Tapis</h3>
+                <div id="table-cards" class="cards-container">
+                    <!-- Dernières cartes posées -->
+                </div>
+            </div>
+
+            <div id="player-area">
+                <div class="actions">
+                    <button id="btn-pass">Passer</button>
+                </div>
+                <div id="my-hand" class="cards-container">
+                    <!-- Mes cartes -->
+                </div>
+            </div>
+            <button id="btn-leave-game" class="leave-btn">Quitter la partie</button>
+        </div>
+    </div>
+
+    <!-- Script Socket.io fourni par le serveur -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
